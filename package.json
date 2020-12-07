@@ -1,0 +1,12 @@
+{
+  "name": "JAMstack-TodoApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/HamzaAhmedSheikh/JAMstack-TodoApp.git",
+  "author": "HamzaAhmedSheikh <hamzaahmedsheikh313@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"    
+  ]
+}
