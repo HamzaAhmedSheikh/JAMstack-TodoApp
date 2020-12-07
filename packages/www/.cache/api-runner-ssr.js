@@ -1,4 +1,7 @@
-var plugins = []
+var plugins = [{
+      plugin: require('F:/JAMstack Serverless and Headless CMS/JAMstack-TodoApp/packages/www/gatsby-ssr'),
+      options: {"plugins":[]},
+    }]
 // During bootstrap, we write requires at top of this file which looks like:
 // var plugins = [
 //   {
