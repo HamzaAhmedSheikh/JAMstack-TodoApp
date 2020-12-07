@@ -12,6 +12,7 @@
     "@theme-ui/presets": "^0.3.4",
     "gatsby": "^2.28.0",
     "netlify-cli": "^2.69.3",
+    "netlify-identity-widget": "^1.9.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "theme-ui": "^0.3.4"

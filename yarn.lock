@@ -10380,6 +10380,11 @@ netlify-cli@^2.69.3:
     wrap-ansi "^6.0.0"
     write-file-atomic "^3.0.0"
 
+netlify-identity-widget@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/netlify-identity-widget/-/netlify-identity-widget-1.9.1.tgz#9e716c4b92b9f0cc041074eb86fc962f35295b46"
+  integrity sha512-9oIWjwUSdRk3SkREcZNjZaVuDDx9T/wSIXZNQsQeY4qoXic/FiXVEGgu2RU3IuA4OI3L2652xY1o+PpS03Ugaw==
+
 netlify-plugin-deploy-preview-commenting@^0.0.1-alpha.15:
   version "0.0.1-alpha.16"
   resolved "https://registry.yarnpkg.com/netlify-plugin-deploy-preview-commenting/-/netlify-plugin-deploy-preview-commenting-0.0.1-alpha.16.tgz#5b145dda937dd37f672c2aa4cc947dcb2f23c2fb"
