@@ -34,6 +34,14 @@ const GET_TODOS = gql`
   }
 `;
 
+const DELETE_TODO = gql`
+    mutation DeleteTodo($id:ID!) {
+      deleteTodo(id:$id) {
+          text
+    }
+  }
+`;
+
 
 const todosReducer = (state, action) => {
     switch (action.type) {
@@ -56,40 +64,41 @@ export default () => {
    const inputRef = useRef();
    const [addTodo] = useMutation(ADD_TODO);
    const [updateTodoDone] = useMutation(UPDATE_TODO_DONE);
+   const [deleteTodo]= useMutation(DELETE_TODO);
    const { loading, error, data, refetch } = useQuery(GET_TODOS);
 
   return (
     <Container>
       <Flex as="nav">
         <NavLink as={Link} to="/" p={2}>
-           Home
+          Home
         </NavLink>
         <NavLink as={Link} to={"/app"} p={2}>
-           Dashboard
+          Dashboard
         </NavLink>
-        
-         {user && (
-            <NavLink
-               href="#!"
-               p={2}
-               onClick={() => {
-                   netlifyIdentity.logout();
-          }}
-        >
-          Log out {user.user_metadata.full_name}
-        </NavLink>
-       )}
+
+        {user && (
+          <NavLink
+            href="#!"
+            p={2}
+            onClick={() => {
+              netlifyIdentity.logout();
+            }}
+          >
+            Log out {user.user_metadata.full_name}
+          </NavLink>
+        )}
       </Flex>
-      
+
       <Flex
         as="form"
-        onSubmit={async e => {
-            e.preventDefault();
-            await addTodo({ variables: { text: inputRef.current.value } });
-            inputRef.current.value = "";
-            await refetch();
+        onSubmit={async (e) => {
+          e.preventDefault();
+          await addTodo({ variables: { text: inputRef.current.value } });
+          inputRef.current.value = "";
+          await refetch();
         }}
-      > 
+      >
         <Label sx={{ display: "flex" }}>
           <span> Add&nbsp;Todo </span>
           <Input ref={inputRef} sx={{ marginLeft: 1 }} />
@@ -98,29 +107,41 @@ export default () => {
       </Flex>
 
       <Flex sx={{ flexDirection: "column" }}>
-       {loading ? <div>loading...</div> : null}
-       {error ? <div>{error.message}</div> : null}
+        {loading ? <div>loading...</div> : null}
+        {error ? <div>{error.message}</div> : null}
 
-       {!loading && !error && (
+        {!loading && !error && (
           <ul sx={{ listStyleType: "none" }}>
-            {data.todos.map(todo => (
-               <Flex
-                 key={todo.id}
-                 as="li"
-                 onClick={async () => {
-                    console.log("updateTodoDone");
-                    await updateTodoDone({ variables: { id: todo.id } });
-                    console.log("refetching");
-                    await refetch();
+            {data.todos.map((todo) => (
+              <Flex
+                key={todo.id}
+                as="li"
+                onClick={async () => {
+                  console.log("updateTodoDone");
+                  await updateTodoDone({ variables: { id: todo.id } });
+                  console.log("refetching");
+                  await refetch();
                 }}
               >
-               <Checkbox checked={todo.done} readOnly />
-                <span>{todo.text}</span>
+                <Checkbox checked={todo.done} readOnly />
+                <Flex
+                  pl={2}
+                  sx={{ justifyContent: "space-between", width: "100%" }}
+                >
+                  <span> {todo.text} </span>
+                  <FontAwesomeIcon
+                    onClick={async () => {
+                      await deleteTodo({ variables: { id: todo.id } });
+                      await refetch();
+                    }}
+                    icon={faTrashAlt}
+                  />
+                </Flex>
               </Flex>
             ))}
           </ul>
-        )}  
+        )}
       </Flex>
-    </Container>    
+    </Container>
   );
 }
