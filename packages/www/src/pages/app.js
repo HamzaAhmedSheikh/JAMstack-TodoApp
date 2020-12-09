@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Router } from "@reach/router";
+import { Router, Link } from "@reach/router";
 import { Container, Heading, Button, Flex } from 'theme-ui';
 import {IdentityContext} from '../../identity-context';
-
+import Dashboard from '../components/Dashboard'
 
 let DashLoggedOut = props => {
   const { user, identity: netlifyIdentity } = useContext(IdentityContext);
@@ -35,7 +35,9 @@ export default props => {
     );
   }
   return (
-     <h1> Hello World </h1>
+    <Router>
+      <Dashboard path="/app" />
+    </Router>    
   );
 };
 
