@@ -2,24 +2,21 @@ const { ApolloServer, gql } = require("apollo-server-lambda");
 const faunadb = require("faunadb");
 const q = faunadb.query;
 
-var client = new faunadb.Client({ secret: process.env.FAUNA });
+var client = new faunadb.Client({ secret: 'fnAD8lhK-mACDa9a14tOfOAUMjMD5VwDT2Yh-DZR' });
 
-// Construct a schema, using Graphql schema language
-
+// Construct a schema, using GraphQL schema language
 const typeDefs = gql`
   type Query {
-    todos: [Todos]!
+    todos: [Todo]!
   }
-
   type Todo {
     id: ID!
     text: String!
-    done: Boolean!  
+    done: Boolean!
   }
-
   type Mutation {
     addTodo(text: String!): Todo
-    updateTodoDone(id: ID!): Todo         
+    updateTodoDone(id: ID!): Todo
   }
 `;
 
