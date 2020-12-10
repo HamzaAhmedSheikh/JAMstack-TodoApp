@@ -92,7 +92,7 @@ export default () => {
       
         <Flex sx={{margin:"auto"}}>
           <Heading as="h1" sx={{margin:"auto",color:"white",fontFamily:"system-ui"}} p={5}>
-            Wellcome to JAMstack Serverless Todo App
+            Welcome to JAMstack Serverless Todo App
           </Heading>
         </Flex>
        
