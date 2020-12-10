@@ -23,7 +23,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = new HttpLink({
-   uri: "https://jamstacktodoapp-hamza.netlify.app/.netlify/functions/graphql"
+   uri: "https://jamstackserverlesstodoapp.netlify.app/.netlify/functions/graphql"
 })
 
 const client = new ApolloClient({
