@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useRef } from 'react';
-import { Flex, Container, NavLink, Input, Button, Label, Checkbox, Heading } from 'theme-ui'
+import { Flex, Container, NavLink, Input, Button, Label, Checkbox, Heading } from 'theme-ui';
 import { Router, Link } from "@reach/router";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { IdentityContext } from '../../identity-context';
