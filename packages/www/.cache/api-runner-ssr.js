@@ -1,5 +1,5 @@
 var plugins = [{
-      plugin: require('F:/JAMstack Serverless and Headless CMS/JAMstack-TodoApp/node_modules/gatsby-plugin-fontawesome-css/gatsby-ssr'),
+      plugin: require('F:/JAMstack Serverless and Headless CMS/JAMstack-TodoApp/packages/www/node_modules/gatsby-plugin-fontawesome-css/gatsby-ssr'),
       options: {"plugins":[]},
     },{
       plugin: require('F:/JAMstack Serverless and Headless CMS/JAMstack-TodoApp/packages/www/gatsby-ssr'),

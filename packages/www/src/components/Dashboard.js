@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useRef } from 'react';
-import {Flex, Container, NavLink, Input, Button,Label, Checkbox} from 'theme-ui'
+import { Flex, Container, NavLink, Input, Button, Label, Checkbox, Heading } from 'theme-ui'
 import { Router, Link } from "@reach/router";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { IdentityContext } from '../../identity-context';
@@ -44,36 +44,36 @@ const DELETE_TODO = gql`
 
 
 const todosReducer = (state, action) => {
-    switch (action.type) {
-     case "addTodo":
-        return [{ done: false, value: action.payload }, ...state];
-     case "toggleTodoDone":
-       const newState = [...state];
-       newState[action.payload] = {
-          done: !state[action.payload].done,
-          value: state[action.payload].value
-        };        
-        return newState;
-    }
- };
+  switch (action.type) {
+    case "addTodo":
+      return [{ done: false, value: action.payload }, ...state];
+    case "toggleTodoDone":
+      const newState = [...state];
+      newState[action.payload] = {
+        done: !state[action.payload].done,
+        value: state[action.payload].value
+      };
+      return newState;
+  }
+};
 
 
 export default () => {
-   const { user, identity: netlifyIdentity } = useContext(IdentityContext);
-   const [todos, dispatch] = useReducer(todosReducer, []);
-   const inputRef = useRef();
-   const [addTodo] = useMutation(ADD_TODO);
-   const [updateTodoDone] = useMutation(UPDATE_TODO_DONE);
-   const [deleteTodo]= useMutation(DELETE_TODO);
-   const { loading, error, data, refetch } = useQuery(GET_TODOS);
+  const { user, identity: netlifyIdentity } = useContext(IdentityContext);
+  const [todos, dispatch] = useReducer(todosReducer, []);
+  const inputRef = useRef();
+  const [addTodo] = useMutation(ADD_TODO);
+  const [updateTodoDone] = useMutation(UPDATE_TODO_DONE);
+  const [deleteTodo] = useMutation(DELETE_TODO);
+  const { loading, error, data, refetch } = useQuery(GET_TODOS);
 
   return (
     <Container>
       <Flex as="nav">
-        <NavLink as={Link} to="/" p={2}>
+        <NavLink as={Link} to="/" p={2}>          
           Home
         </NavLink>
-        <NavLink as={Link} to={"/app"} p={2}>
+        <NavLink as={Link} to={"/app"} p={2}>         
           Dashboard
         </NavLink>
 
@@ -87,9 +87,15 @@ export default () => {
           >
             Log out {user.user_metadata.full_name}
           </NavLink>
-        )}
+        )}          
       </Flex>
-
+      
+        <Flex sx={{margin:"auto"}}>
+          <Heading as="h1" sx={{margin:"auto",color:"white",fontFamily:"system-ui"}} p={5}>
+            Wellcome to JAMstack Serverless Todo App
+          </Heading>
+        </Flex>
+       
       <Flex
         as="form"
         onSubmit={async (e) => {
